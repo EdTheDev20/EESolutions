@@ -1,0 +1,15 @@
+{
+  "name": "aw_pp1",
+  "version": "1.0.0",
+  "description": "Primeira Parcelar de Aplicações Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elber Pedro & Edgar Cardoso",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <title>OutSpace</title>
+  </head>
+  <body>
+    <!-- Page start -->
+    <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+      <div class="container-fluid">
+        <!--Nav Brand-->
+        <a href="../index.html" class="navbar-brand">
+          <img
+            src="../assets/icons/genetic-data-svgrepo-com.svg"
+            alt=""
+            width="30"
+            height="24"
+          />
+          Outspace</a
+        >
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!--Links da Navbar-->
+            <li class="nav-item">
+              <a href="/" class="nav-link active">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">Outdoors</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="../Views/about.html" class="nav-link">Sobre</a>
+            </li>
+
+            <li class="nav-item ms-2 d-none d-md-inline">
+              <a href="#" class="btn btn-secondary">Alugue já</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="container">
+      <div id="welcometext">
+        <p class="fs-3 text-center">
+          Quem somos nós?
+        </p>
+        <hr />
+      </div>
+
+ 
+    </section>
+
+    <footer class="container-fluid bg-dark" data-bs-theme="dark">
+      <div class="row justify-content-between border-top py-3 mt-4">
+        <div class="col-6">
+          <a href="/" class="text-body-secondary text-decoration-none">
+            <img
+              src="../assets/icons/genetic-data-svgrepo-com.svg"
+              width="30"
+              height="24"
+              alt=""
+            />
+          </a>
+          <span class="text-body-secondary">© Outspace, 2024.</span>
+        </div>
+        <div class="col-6">
+          <ul class="nav justify-content-end list-unstyled d-flex">
+            <li class="ms-3 list-unstyled">
+              <a href="#" class="text-body-secondary">
+                <img
+                  src="../assets/icons/phone-svgrepo-com.svg"
+                  width="30"
+                  height="24"
+                  alt=""
+                />
+                <span class="text-body-tertiary">938893750</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!--Javascript scripts before closing the body are the keys because they load before the end of the page loading and not after.-->
+    <script src="../javascript/index.js"></script>
+    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script
+      src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
