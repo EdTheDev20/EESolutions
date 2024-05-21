@@ -2,24 +2,24 @@
 "outdoors": [
 {
     "titulo": "Outdoor Kilamba",
-    "path":"/assets/images/out1.png",
+    "path":"/EEsolutions/assets/images/out1.png",
     "price":"45000"
 },
 {
     "titulo": "Outdoor Benfica",
-    "path":"/assets/images/out2.jpg",
+    "path":"/EEsolutions/assets/images/out2.jpg",
     "price":"30000"
 },{
     "titulo": "Outdoor Zango 8000",
-    "path":"/assets/images/out3.jpeg",
+    "path":"/EEsolutions/assets/images/out3.jpeg",
     "price":"40000"
 },{
     "titulo": "Outdoor Cacuaco",
-    "path":"/assets/images/out4.jpeg",
+    "path":"/EEsolutions/assets/images/out4.jpeg",
     "price":"50000"
 },{
     "titulo": "Outdoor Talatona",
-    "path":"/assets/images/out5.jpg",
+    "path":"/EEsolutions/assets/images/out5.jpg",
     "price":"100000"
 }  
 ]
