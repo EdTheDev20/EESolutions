@@ -1,0 +1,22 @@
+{
+    "name": "edgar.cardoso/ee-solutions",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "EdgarCardoso\\EeSolutions\\": "src/"
+        }
+    },
+    "config": {
+        "vendor-dir":"assets/vendor"
+
+    },
+    "authors": [
+        {
+            "name": "Edgar Cardoso",
+            "email": "edgarrlcardoso20@gmail.com"
+        }
+    ]
+}
