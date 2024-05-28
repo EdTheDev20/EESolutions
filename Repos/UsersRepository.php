@@ -15,21 +15,41 @@ class UsersRepository
 
     public function getUserforDashBoard()
     {
-        $statement = $this->database->prepare("SELECT tuser.id, tuser.nome, tuser.email, tuser.morada, tuser.numTel, tuser.username, tuser.password, tuser.empresaActividade, tuser.fk_tEstadoConta, tuser.fk_tTipoCliente, tuser.fk_tTipoDeUsuario,
-    tprovincia.nome AS prov_name, tmunicipio.nome AS mun_name, tcomuna.nome AS com_name, tnacionalidade.nome AS nacionalidade_name, testadocliente.nome AS estado_conta_nome
-FROM tuser
-LEFT JOIN tprovincia ON tuser.fk_prov = tprovincia.idtprovincia
-LEFT JOIN tmunicipio ON tuser.fk_mun = tmunicipio.idtmunicipio
-LEFT JOIN tcomuna ON tuser.fk_com = tcomuna.idtcomuna
-LEFT JOIN tnacionalidade ON tuser.fk_tNacionalidade = tnacionalidade.idtnacionalidade
-LEFT JOIN testadocliente ON tuser.fk_tEstadoConta = testadocliente.id;
+        $statement = $this->database->prepare("SELECT tuser.id, 
+        tuser.nome, 
+        tuser.email, 
+        tuser.morada, 
+        tuser.numTel, 
+        tuser.username, 
+        tuser.password, 
+        tuser.empresaActividade, 
+        tuser.fk_tEstadoConta, 
+        tuser.fk_tTipoCliente, 
+        tuser.fk_tTipoDeUsuario,
+        tprovincia.nome AS prov_name, 
+        tmunicipio.nome AS mun_name, 
+        tcomuna.nome AS com_name, 
+        tnacionalidade.nome AS nacionalidade_name, 
+        testadocliente.nome AS estado_conta_nome
+ FROM tuser
+ LEFT JOIN tprovincia ON tuser.fk_prov = tprovincia.idtprovincia
+ LEFT JOIN tmunicipio ON tuser.fk_mun = tmunicipio.idtmunicipio
+ LEFT JOIN tcomuna ON tuser.fk_com = tcomuna.idtcomuna
+ LEFT JOIN tnacionalidade ON tuser.fk_tNacionalidade = tnacionalidade.idtnacionalidade
+ LEFT JOIN testadocliente ON tuser.fk_tEstadoConta = testadocliente.id
+ WHERE tuser.fk_tTipoDeUsuario <> 1 AND tuser.fk_tEstadoConta <> 1; 
 ");
         $statement->execute();
         $result = $statement->fetchAll();
         foreach ($result as $user) {
             $users[] = new Cliente($user['id'], $user['fk_tTipoDeUsuario'], $user['nome'], $user['email'], $user['morada'], $user['numTel'], $user['username'], $user['password'], $user['prov_name'], $user['mun_name'], $user['com_name'], "null", $user['fk_tTipoCliente'], $user['empresaActividade'], $user['nacionalidade_name'], $user['estado_conta_nome']);
         }
-        return $users;
+        if(isset($users)){
+                   return $users;
+ 
+        } else{
+            return false;
+        }
 
 
     }
@@ -130,6 +150,32 @@ WHERE tuser.id = :id;
             $stmt->bindparam(":fk_tTipoDeUsuario", $fk_tTipoDeUsuario);
             $stmt->bindparam(":fk_tEstadoConta", $fk_tEstadoConta);
             $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function ApproveUser($userId)
+    {
+        try {
+            $statement = $this->database->prepare("UPDATE tuser SET fk_tEstadoConta = 1 WHERE id = :id");
+            $statement->bindparam(":id", $userId);
+            $statement->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function DeleteUser($userId)
+    {
+        try {
+            $statement = $this->database->prepare("DELETE FROM tuser WHERE id = :id");
+            $statement->bindparam(":id", $userId);
+            $statement->execute();
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();

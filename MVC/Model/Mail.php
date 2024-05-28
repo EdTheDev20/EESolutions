@@ -17,7 +17,7 @@ $this->mail->Host = "smtp.gmail.com"; //Endereço do host
 $this->mail->Port=465; //Endereço da porta
 $this->mail->SMTPSecure='ssl'; //Tipo de conexão
 $this->mail->Username = "xptosolutionstest@gmail.com"; //Email que será usado para enviar o email
-$this->mail->Password= ""; //Password do email que será utilizado
+$this->mail->Password= "bzicwjkkjnguvazq"; //Password do email que será utilizado
 $this->mail->setFrom("xptosolutionstest@gmail.com"); //O email que irá mandar o email
 $this->mail->addAddress($email,$nome); //Endereço que receberá o email
 $this->mail->Subject = $subject; //Assunto do email

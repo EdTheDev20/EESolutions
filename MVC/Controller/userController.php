@@ -59,6 +59,44 @@ class userController
         return $this->usersRepository->userLogin($email,$password);
     }
 
+    public function populateAdminDashboard(){
+        try{
+            return $this->usersRepository->getUserforDashBoard();
+        } catch(Exception $e){
+            echo "Erro ao recolher usuários";
+        }
+    }
+
+    public function approveUser($userId){
+        try{
+            return $this->usersRepository->ApproveUser($userId);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function deleteUser($userId){
+        try{
+            
+            return $this->usersRepository->DeleteUser($userId);
+        } catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getClientDash($id){
+        try {
+            return $res = $this->usersRepository->getCliente($id);
+        }
+        catch(Exception $e){
+            echo "Erro na pesquisa de clientes";
+        }
+    }
+
 }
+
 
 ?>

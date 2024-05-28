@@ -67,6 +67,32 @@ class mainController
                 case '/logout':
                     session_destroy();
                     header('Location: /eesolutions');
+                case '/dashboard':
+                    if(isset($_SESSION)){
+                     if($_SESSION['fk_tTipoDeUsuario']=="1"){
+
+                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])){
+                                $userController->deleteUser($_POST['delete']);
+                            }
+                            
+                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['patch'])){
+                                $userController->approveUser($_POST['patch']);
+                            }
+                       
+                        $users = $userController->populateAdminDashboard();
+                        
+                        include_once (MVC_BASE_PATH . '/../' . "header.php");
+                        include MVC_BASE_PATH . '/Views/adminDashboard.php';
+                        include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                     }
+                     if($_SESSION['fk_tTipoDeUsuario']=='3'){
+                        $User = $userController->getClientDash($_SESSION['id']);
+                        include_once (MVC_BASE_PATH . '/../' . "header.php");
+                        include MVC_BASE_PATH . '/Views/userDashboard.php';
+                        include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                     }
+                    }
+                    break;
                 default:
                     include_once (MVC_BASE_PATH . '/../' . "header.php");
                     include MVC_BASE_PATH . '/Views/error.php';
