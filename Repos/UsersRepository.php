@@ -37,7 +37,7 @@ class UsersRepository
  LEFT JOIN tcomuna ON tuser.fk_com = tcomuna.idtcomuna
  LEFT JOIN tnacionalidade ON tuser.fk_tNacionalidade = tnacionalidade.idtnacionalidade
  LEFT JOIN testadocliente ON tuser.fk_tEstadoConta = testadocliente.id
- WHERE tuser.fk_tTipoDeUsuario <> 1 AND tuser.fk_tEstadoConta <> 1; 
+ WHERE tuser.fk_tTipoDeUsuario <> 1; 
 ");
         $statement->execute();
         $result = $statement->fetchAll();
@@ -165,6 +165,19 @@ WHERE tuser.id = :id;
             $statement->execute();
             return true;
         } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function BlockUser($userId){
+        try{
+            $stmt = $this->database->prepare("UPDATE tuser SET fk_tEstadoConta = 2 WHERE id = :id");
+            $stmt->bindParam(":id", $userId);
+            $stmt->execute();
+            return true;
+
+        } catch(PDOException $e){
             echo $e->getMessage();
             return false;
         }

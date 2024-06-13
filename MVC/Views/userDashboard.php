@@ -16,9 +16,9 @@
                             <p class="mb-0">Nome Completo</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0"> <?php 
-                    echo $User->getName();
-                            
+                            <p class="text-muted mb-0"> <?php
+                            echo $User->getName();
+
                             ?> </p>
                         </div>
                     </div>
@@ -30,40 +30,40 @@
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">
-                            <?php 
-                            $tipoDeCliente = $User->getTipoDeCliente();
-                          if($tipoDeCliente==1){
-                            echo "Particular";
-                          }
-                          else echo "Empresa";
-                            
-                            ?>    
-
-                            </p>
-                        </div>
-                    </div>
-
-                    <hr>
-<?php
-if($User->getActividadeDaEmpresa()!="null"){
-?>
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Actividade da Empresa</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0">
                                 <?php
-                               echo $User->getActividadeDaEmpresa();
+                                $tipoDeCliente = $User->getTipoDeCliente();
+                                if ($tipoDeCliente == 1) {
+                                    echo "Particular";
+                                } else
+                                    echo "Empresa";
+
                                 ?>
+
                             </p>
                         </div>
                     </div>
 
                     <hr>
-<?php 
-} ?>
+                    <?php
+                    if ($User->getActividadeDaEmpresa() != "null") {
+                        ?>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Actividade da Empresa</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <?php
+                                    echo $User->getActividadeDaEmpresa();
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+                    <?php
+                    } ?>
 
 
 
@@ -95,7 +95,7 @@ if($User->getActividadeDaEmpresa()!="null"){
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">
-                            <?php echo $User->getCellphoneNumber(); ?>    
+                                <?php echo $User->getCellphoneNumber(); ?>
 
                             </p>
                         </div>

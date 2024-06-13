@@ -8,7 +8,7 @@ class userController
     public function __construct(){
         $this->usersRepository = new UsersRepository();}
 
-    public function register()
+    public function register($fk_one,$fk_two)
     {
         try {
             $nome = isset($_POST['nomeCompleto']) ? filter_input(INPUT_POST, 'nomeCompleto') : NULL;
@@ -36,8 +36,8 @@ class userController
                 $comuna,
                 $tipoDeCliente,
                 $nacionalidade,
-                "3",
-                "3"
+                $fk_one,
+                $fk_two
             );
 
             $adminEmail = $this->usersRepository->getAdminEmail();
@@ -71,6 +71,16 @@ class userController
         try{
             return $this->usersRepository->ApproveUser($userId);
         }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function blockUser($userId){
+        try{
+            return $this->usersRepository->BlockUser($userId);
+        } 
         catch(PDOException $e){
             echo $e->getMessage();
             return false;

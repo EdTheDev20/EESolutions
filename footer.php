@@ -28,8 +28,8 @@
     </footer>
     <!--Javascript scripts before closing the body are the keys because they load before the end of the page loading and not after.-->
     <script src="/eesolutions/javascript/jquery-3.7.1.min.js"></script>
-    <script src="/eesolutions/javascript/index.js"></script>
     <script src="/eesolutions/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="/eesolutions/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/eesolutions/javascript/index.js"></script>
   </body>
 </html>

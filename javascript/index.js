@@ -46,8 +46,7 @@ window.addEventListener("load", function () {
 
   if (
     window.location.href == "http://localhost/eesolutions/register" ||
-    window.location.href == "http://127.0.0.1/eesolutions/register"
-  ) {
+    window.location.href == "http://127.0.0.1/eesolutions/register") {
     $.ajax({
       type: "GET",
       url: "/eesolutions/scripts/ajax.php",
@@ -97,7 +96,7 @@ window.addEventListener("load", function () {
   }
 });
 
-{
+
   function alterMunicipios() {
     var selectedOption = document.getElementById("provinciaSelect");
     const municipioSelect = document.getElementById("municipioSelect");
@@ -181,6 +180,55 @@ window.addEventListener("load", function () {
       empresaActivitiesDiv.innerHTML = "";
     }
   }
+
+  function fillOptions(){
+  $.ajax({
+    type: "GET",
+    url: "/eesolutions/scripts/ajax.php",
+    data: {
+      nacionalidades: "",
+    },
+    dataType: "json",
+    success: function (response) {
+      const nacionalidadeSelect = document.getElementById(
+        "nacionalidadeSelect"
+      );
+      response.forEach((nacionalidade) => {
+        const option = document.createElement("option");
+        option.value = nacionalidade.idtnacionalidade;
+        option.innerHTML = nacionalidade.nome;
+        nacionalidadeSelect.appendChild(option);
+      });
+    },
+    error: function (xhr, status, error) {
+      console.log(xhr);
+      console.log(status);
+      console.log(error);
+    },
+  });
+  $.ajax({
+    type: "GET",
+    url: "/eesolutions/scripts/ajax.php",
+    data: {
+      provincias: "dummy",
+    },
+    dataType: "json",
+    success: function (response) {
+      const provinciaSelect = document.getElementById("provinciaSelect");
+      response.forEach((provincia) => {
+        const option = document.createElement("option");
+        option.value = provincia.idtprovincia;
+        option.innerHTML = provincia.nome;
+        provinciaSelect.appendChild(option);
+      });
+    },
+    error: function (xhr, status, error) {
+      console.log(error);
+      console.log(status);
+      console.log(xhr);
+    },
+  });
+
 }
 
-  
+

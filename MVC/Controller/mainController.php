@@ -52,7 +52,7 @@ class mainController
                     break;
                 case '/register':
                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-submitted']) {
-                        $userController->register();
+                        $userController->register("3","3");
                         include_once (MVC_BASE_PATH . '/../' . "header.php");
                         include MVC_BASE_PATH . '/Views/registerSuccess.php';
                         include_once (MVC_BASE_PATH . '/../' . "footer.php");
@@ -77,6 +77,14 @@ class mainController
                             
                             if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['patch'])){
                                 $userController->approveUser($_POST['patch']);
+                            }
+
+                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['block'])){
+                               $userController->blockUser($_POST['block']);
+                            }
+
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form-submitted'])) {
+                                $userController->register("2","3"); 
                             }
                        
                         $users = $userController->populateAdminDashboard();
