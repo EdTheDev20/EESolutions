@@ -13,6 +13,39 @@ class UsersRepository
         $this->database = Database::getInstance();
     }
 
+    public function updateUser($clientId, $nome, $email, $morada, $numTel, $username, $password, $empresaActividade, $fk_prov, $fk_mun, $fk_com, $fk_tTipoCliente, $fk_tNacionalidade, $fk_tTipoDeUsuario, $fk_tEstadoConta)
+    {
+        try {
+            $stmt = $this->database->prepare("UPDATE tuser
+            SET nome = :nome, email = :email, morada = :morada, numTel = :numTel,
+            username = :username, password = :password, empresaActividade = :empresaActividade,
+            fk_prov = :fk_prov, fk_mun = :fk_mun, fk_com = :fk_com,
+            fk_tTipoCliente = :fk_tTipoCliente, fk_tNacionalidade = :fk_tNacionalidade,
+            fk_tTipoDeUsuario = :fk_tTipoDeUsuario, fk_tEstadoConta = :fk_tEstadoConta
+            WHERE id = :id");
+            $stmt->bindparam(":id", $clientId);
+            $stmt->bindparam(":nome", $nome);
+            $stmt->bindparam(":email", $email);
+            $stmt->bindparam(":morada", $morada);
+            $stmt->bindparam(":numTel", $numTel);
+            $stmt->bindparam(":username", $username);
+            $stmt->bindparam(":password", $password);
+            $stmt->bindparam(":empresaActividade", $empresaActividade);
+            $stmt->bindparam(":fk_prov", $fk_prov);
+            $stmt->bindparam(":fk_mun", $fk_mun);
+            $stmt->bindparam(":fk_com", $fk_com);
+            $stmt->bindparam(":fk_tTipoCliente", $fk_tTipoCliente);
+            $stmt->bindparam(":fk_tNacionalidade", $fk_tNacionalidade);
+            $stmt->bindparam(":fk_tTipoDeUsuario", $fk_tTipoDeUsuario);
+            $stmt->bindparam(":fk_tEstadoConta", $fk_tEstadoConta);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
     public function getUserforDashBoard()
     {
         $statement = $this->database->prepare("SELECT tuser.id, 
@@ -44,10 +77,10 @@ class UsersRepository
         foreach ($result as $user) {
             $users[] = new Cliente($user['id'], $user['fk_tTipoDeUsuario'], $user['nome'], $user['email'], $user['morada'], $user['numTel'], $user['username'], $user['password'], $user['prov_name'], $user['mun_name'], $user['com_name'], "null", $user['fk_tTipoCliente'], $user['empresaActividade'], $user['nacionalidade_name'], $user['estado_conta_nome']);
         }
-        if(isset($users)){
-                   return $users;
- 
-        } else{
+        if (isset($users)) {
+            return $users;
+
+        } else {
             return false;
         }
 
@@ -170,14 +203,15 @@ WHERE tuser.id = :id;
         }
     }
 
-    public function BlockUser($userId){
-        try{
+    public function BlockUser($userId)
+    {
+        try {
             $stmt = $this->database->prepare("UPDATE tuser SET fk_tEstadoConta = 2 WHERE id = :id");
             $stmt->bindParam(":id", $userId);
             $stmt->execute();
             return true;
 
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }

@@ -52,7 +52,7 @@ class mainController
                     break;
                 case '/register':
                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-submitted']) {
-                        $userController->register("3","3");
+                        $userController->register("3", "3");
                         include_once (MVC_BASE_PATH . '/../' . "header.php");
                         include MVC_BASE_PATH . '/Views/registerSuccess.php';
                         include_once (MVC_BASE_PATH . '/../' . "footer.php");
@@ -64,41 +64,53 @@ class mainController
                     }
 
                     break;
+
+                case '/update':
+                    if (isset($_SESSION)) {
+                        if ($_SESSION['fk_tTipoDeUsuario'] == '3') {
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form-submitted'])) {
+                              $userController->upUser("3","1");
+                              header("Location: /eesolutions/dashboard");
+                              exit();
+                            }
+                        }
+                    }
+                    break;
                 case '/logout':
                     session_destroy();
                     header('Location: /eesolutions');
                 case '/dashboard':
-                    if(isset($_SESSION)){
-                     if($_SESSION['fk_tTipoDeUsuario']=="1"){
+                    if (isset($_SESSION)) {
+                        if ($_SESSION['fk_tTipoDeUsuario'] == "1") {
 
-                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])){
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                                 $userController->deleteUser($_POST['delete']);
                             }
-                            
-                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['patch'])){
+
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['patch'])) {
                                 $userController->approveUser($_POST['patch']);
                             }
 
-                            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['block'])){
-                               $userController->blockUser($_POST['block']);
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['block'])) {
+                                $userController->blockUser($_POST['block']);
                             }
 
                             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form-submitted'])) {
-                                $userController->register("2","3"); 
+                                $userController->register("2", "3");
                             }
-                       
-                        $users = $userController->populateAdminDashboard();
-                        
-                        include_once (MVC_BASE_PATH . '/../' . "header.php");
-                        include MVC_BASE_PATH . '/Views/adminDashboard.php';
-                        include_once (MVC_BASE_PATH . '/../' . "footer.php");
-                     }
-                     if($_SESSION['fk_tTipoDeUsuario']=='3'){
-                        $User = $userController->getClientDash($_SESSION['id']);
-                        include_once (MVC_BASE_PATH . '/../' . "header.php");
-                        include MVC_BASE_PATH . '/Views/userDashboard.php';
-                        include_once (MVC_BASE_PATH . '/../' . "footer.php");
-                     }
+
+                            $users = $userController->populateAdminDashboard();
+
+                            include_once (MVC_BASE_PATH . '/../' . "header.php");
+                            include MVC_BASE_PATH . '/Views/adminDashboard.php';
+                            include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                        }
+                        if ($_SESSION['fk_tTipoDeUsuario'] == '3') {
+                            $User = $userController->getClientDash($_SESSION['id']);
+                            include_once (MVC_BASE_PATH . '/../' . "header.php");
+                            include MVC_BASE_PATH . '/Views/userDashboard.php';
+                            include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                        }
                     }
                     break;
                 default:
