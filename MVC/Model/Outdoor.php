@@ -7,16 +7,19 @@ protected $localizacao;
 protected $datadeinicio;
 protected $datadefim;
 protected $imagepath;
+
+protected $comprovativo;
 protected $estado;
 protected $preco;
 
-function __construct($id="null",$tipo,$Oid="null",$provincia,$municipio,$comuna,$datadeinicio,$datadefim,$imagepath,$estado,$preco){
+function __construct($id="null",$tipo,$Oid="null",$provincia,$municipio,$comuna,$datadeinicio,$datadefim,$imagepath,$estado,$preco,$comprovativo){
 $this->id = $id;
 $this->tipo = $tipo;
 $this->localizacao = new Localizacao($Oid,$provincia,$municipio,$comuna);
 $this->datadeinicio = $datadeinicio;
 $this->datadefim = $datadefim;
 $this->imagepath = $imagepath;
+$this->comprovativo = $comprovativo;
 $this->estado = $estado;
 $this->preco = $preco;
 }
@@ -31,6 +34,15 @@ public function setComuna($x){
 
 public function setProvincia($x){
     $this->localizacao->setProvincia($x);
+}
+
+public function setComprovativo($x){
+    $this->comprovativo = $x;
+    return $this;
+}
+
+public function getComprovativo(){
+    return $this->comprovativo;
 }
 
 public function getMunicipio(){

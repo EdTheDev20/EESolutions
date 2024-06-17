@@ -117,12 +117,12 @@ class UsersRepository
     {
         $statement = $this->database->prepare("SELECT tuser.id, tuser.nome, tuser.email, tuser.morada, tuser.numTel, tuser.username, tuser.password, tuser.empresaActividade, tuser.fk_tEstadoConta, tuser.fk_tTipoCliente, tuser.fk_tTipoDeUsuario,
        tprovincia.nome AS prov_name, tmunicipio.nome AS mun_name, tcomuna.nome AS com_name, tnacionalidade.nome AS nacionalidade_name
-FROM tuser
-LEFT JOIN tprovincia ON tuser.fk_prov = tprovincia.idtprovincia
-LEFT JOIN tmunicipio ON tuser.fk_mun = tmunicipio.idtmunicipio
-LEFT JOIN tcomuna ON tuser.fk_com = tcomuna.idtcomuna
-LEFT JOIN tnacionalidade ON tuser.fk_tNacionalidade = tnacionalidade.idtnacionalidade
-WHERE tuser.id = :id;
+       FROM tuser
+       LEFT JOIN tprovincia ON tuser.fk_prov = tprovincia.idtprovincia
+       LEFT JOIN tmunicipio ON tuser.fk_mun = tmunicipio.idtmunicipio
+       LEFT JOIN tcomuna ON tuser.fk_com = tcomuna.idtcomuna
+       LEFT JOIN tnacionalidade ON tuser.fk_tNacionalidade = tnacionalidade.idtnacionalidade
+       WHERE tuser.id = :id;
 ");
         $statement->bindparam(":id", $id);
         $statement->execute();
