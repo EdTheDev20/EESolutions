@@ -11,8 +11,10 @@ protected $imagepath;
 protected $comprovativo;
 protected $estado;
 protected $preco;
+protected $userId;
 
-function __construct($id="null",$tipo,$Oid="null",$provincia,$municipio,$comuna,$datadeinicio,$datadefim,$imagepath,$estado,$preco,$comprovativo){
+function __construct($id="null",$tipo,$Oid="null",$provincia,$municipio,
+$comuna,$datadeinicio,$datadefim,$imagepath,$estado,$preco,$comprovativo,$userId){
 $this->id = $id;
 $this->tipo = $tipo;
 $this->localizacao = new Localizacao($Oid,$provincia,$municipio,$comuna);
@@ -22,8 +24,17 @@ $this->imagepath = $imagepath;
 $this->comprovativo = $comprovativo;
 $this->estado = $estado;
 $this->preco = $preco;
+$this->userId = $userId;
 }
 
+public function setUserId($x){
+    $this->userId = $x;
+    return $this;
+}
+
+public function getUserId(){
+    return $this->userId;
+}
 public function setMunicipio($x){
     $this->localizacao->setMunicipio($x);
 }

@@ -9,3 +9,19 @@ text-decoration: none!important;
 #push {
     margin-bottom:25%;
 }
+
+.custom-file-input {
+    position: absolute;
+    opacity: 0;
+}
+.custom-file-label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0.25rem;
+}
+.custom-file-label:hover {
+    background-color: #0056b3;
+}

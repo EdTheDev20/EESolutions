@@ -1,10 +1,12 @@
 <?php
 define('MVC_BASE_PATH', dirname(__FILE__) . '/../');
 require_once ('userController.php');
+require_once ('outdoorController.php');
 class mainController
 {
     public function handler()
     {
+        $outdoorController = new outdoorController();
         $userController = new UserController();
         $op = "";
         if (isset($_SERVER['PATH_INFO'])) {
@@ -19,6 +21,21 @@ class mainController
                     include_once (MVC_BASE_PATH . '/../' . "header.php");
                     include MVC_BASE_PATH . '/Views/expo.php';
                     include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                    break;
+
+                case '/outdoors':
+                    if (isset($_SESSION)) {
+                        if(isset($_POST['outdoor_register'])){
+                            $outdoorController->createOutdoorC();
+                        //    header("Location: /eesolutions");
+                        }
+                        include_once (MVC_BASE_PATH . '/../' . "header.php");
+                        include MVC_BASE_PATH . '/Views/outdoorRegister.php';
+                        include_once (MVC_BASE_PATH . '/../' . "footer.php");
+                    } else {
+                        header("Location: /eesolutions");
+                    }
+
                     break;
                 case '/login':
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,9 +86,9 @@ class mainController
                     if (isset($_SESSION)) {
                         if ($_SESSION['fk_tTipoDeUsuario'] == '3') {
                             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form-submitted'])) {
-                              $userController->upUser("3","1");
-                              header("Location: /eesolutions/dashboard");
-                              exit();
+                                $userController->upUser("3", "1");
+                                header("Location: /eesolutions/dashboard");
+                                exit();
                             }
                         }
                     }
@@ -107,6 +124,7 @@ class mainController
                         }
                         if ($_SESSION['fk_tTipoDeUsuario'] == '3') {
                             $User = $userController->getClientDash($_SESSION['id']);
+                            $outdoors = $outdoorController->getUserOutdoors($_SESSION['id']);
                             include_once (MVC_BASE_PATH . '/../' . "header.php");
                             include MVC_BASE_PATH . '/Views/userDashboard.php';
                             include_once (MVC_BASE_PATH . '/../' . "footer.php");
@@ -125,6 +143,7 @@ class mainController
 
 
     }
+   
 }
 
 ?>

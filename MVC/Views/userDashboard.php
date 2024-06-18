@@ -284,3 +284,65 @@
         </div>
     </div>
 </div>
+
+
+<section class="container" id="push">
+    <div id="maintext">
+        <p class="fs-3 text-center">As suas solicitações</p>
+        <hr />
+
+        
+    </div>
+
+    
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tipo de Outdoor</th>
+                <th>Provincia</th>
+                <th>Municipio</th>
+                <th>Comuna</th>
+                <th>Estado do Outdoor</th>
+                <th>Data de Início</th>
+                <th>Data de fim</th>
+                <th>Preço</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($outdoors) && is_array($outdoors) && count($outdoors) > 0):
+                foreach ($outdoors as $outdoor): ?>
+                    <tr>
+                        <td><?php echo $outdoor->getId(); ?></td>
+                        <td><?php echo $outdoor->getTipo(); ?></td>
+                        <td><?php echo $outdoor->getProvincia(); ?></td>
+                        <td><?php echo $outdoor->getMunicipio(); ?></td> <!-- Fix this line -->
+                        <td><?php echo $outdoor->getComuna(); ?></td>
+                        <td><?php echo $outdoor->getEstado(); ?></td>
+                        <td><?php echo $outdoor->getDatadeinicio(); ?></td>
+                        <td><?php echo $outdoor->getDatadefim(); ?></td>
+                        <td><span><?php echo $outdoor->getPreco(); ?> <strong>Kz</strong></span></td>
+                        <td>
+                            <?php if($outdoor->getComprovativo()=="null"){ ?>
+     <form>
+        <div class="mb-3">
+            <label for="fileToUpload" class="custom-file-label">
+                <i class="bi bi-cloud-arrow-up"></i> Upload de comprovativo
+            </label>
+            <input type="file" accept="application/pdf" name="fileToUpload" id="fileToUpload" class="custom-file-input">
+        </div>
+    </form>
+                           <?php } ?> 
+                        </td>
+                    </tr>
+                <?php endforeach;
+            else: ?>
+                <tr>
+                    <td colspan="10" class="text-center">Nenhuma solicitação feita.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</section>

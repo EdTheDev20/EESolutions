@@ -1,8 +1,8 @@
+
 window.addEventListener("load", function () {
   if (
     window.location.href == "http://localhost/eesolutions/" ||
-    window.location.href == "http://127.0.0.1/eesolutions/"
-  ) {
+    window.location.href == "http://127.0.0.1/eesolutions/" ) {
     this.fetch("/EESolutions/javascript/db.json")
       .then((response) => response.json())
       .then((data) => {
@@ -46,7 +46,8 @@ window.addEventListener("load", function () {
 
   if (
     window.location.href == "http://localhost/eesolutions/register" ||
-    window.location.href == "http://127.0.0.1/eesolutions/register") {
+    window.location.href == "http://127.0.0.1/eesolutions/register" ||
+    window.location.href == "http://localhost/eesolutions/outdoors") {
     $.ajax({
       type: "GET",
       url: "/eesolutions/scripts/ajax.php",
@@ -96,6 +97,18 @@ window.addEventListener("load", function () {
   }
 });
 
+document.getElementById('outdoorform').addEventListener('submit', function(event) {
+  var date1 = document.getElementById('dataInicio').value;
+  var date2 = document.getElementById('dataFim').value;
+  var error = document.getElementById('error');
+
+  if (new Date(date1) >= new Date(date2)) {
+      error.textContent = "A data de fim não deve ser uma data antes da data de início";
+      event.preventDefault(); // Prevent form submission
+  } else {
+      error.textContent = ""; // Clear any previous error messages
+  }
+});
 
   function alterMunicipios() {
     var selectedOption = document.getElementById("provinciaSelect");
@@ -230,5 +243,14 @@ window.addEventListener("load", function () {
   });
 
 }
+
+ 
+  document.querySelector('.custom-file-label').addEventListener('click', function() {
+      document.querySelector('.custom-file-input').click();
+  });
+
+  document.querySelector('.custom-file-input').addEventListener('change', function(){
+      console.log("I have changed")}); 
+
 
 

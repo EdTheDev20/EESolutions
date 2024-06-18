@@ -36,7 +36,7 @@
           </li>
 
           <li class="nav-item ms-2 d-none d-md-inline">
-            <a href="#" class="btn btn-secondary">Alugue já</a>
+            <a href="/eesolutions/outdoors" class="btn btn-secondary">Alugue já</a>
           </li>
         </ul>
       </div>
